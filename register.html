@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo-Register</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/register-style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>ToDo App</h1>
+        </header>
+
+        <div class="register-form">
+            <h1>Register Yourself</h1>
+            <form onsubmit="return validateData()" action="index.html">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" placeholder="Enter email address" required>
+
+                <label for="fname" id="label-fname">First Name:</label><br>
+                <input type="text" id="fname" placeholder="Enter First Name" required>
+
+                <label for="lname">Last Name:</label><br>
+                <input type="text" id="lname" placeholder="Enter Last Name" required>
+
+                <label for="gender">Gender:</label>
+                <input type="radio" name="gender" value="male">Male
+                <input type="radio" name="gender" value="female">Female
+                <br>
+                
+                <label for="address">Address:</label><br>
+                <textarea id="address" placeholder="Enter your address" required></textarea>
+
+                <label for="profile-image">Profile Photo:</label>
+                <input type="file" id="profile-image"><br>
+
+                <label for="passwd">Password:</label><br>
+                <input type="password" id="passwd" placeholder="Enter password" required>
+
+                <label for="confirm-passwd">Confirm Password:</label><br>
+                <input type="password" id="confirm-passwd" placeholder="Re-enter your password" required>
+
+                <input type="submit" value="Register">
+            </form>
+        </div>
+        <script src="scripts/register-script.js"></script>
+    </body>
+</html>
