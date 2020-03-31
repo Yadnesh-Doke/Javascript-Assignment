@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Profile</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/Profile-style.css">
+    </head>
+
+    <body onload="loadUserData()">
+        <header>
+            <h1>ToDo App</h1>
+            <div class="header-nav">
+                <ul>
+                    <li><a href="todoList.html">To Do List</a></li>
+                    <li><a href="index.html">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </header>
+
+        <section class="user-profile">
+            <button id="edit-button" onclick="edit()">Edit</button>
+            <div class="profile-data">
+                <img>
+            
+                <form onsubmit="loadData()">
+                    <label for="fname">First Name:</label>
+                    <input type="text" id="fname" readonly><br><br>
+
+                    <label for="lname">Last Name:</label>
+                    <input type="text" id="lname" readonly><br><br>
+
+                    <label for="gender">Gender:</label>
+                    <input type="radio" name="gender" value="male" id="male" readonly>Male
+                    <input type="radio" name="gender" value="female" id="female" readonly>Female<br><br>
+
+                    <label for="address">Address:</label>
+                    <textarea id="address" readonly></textarea><br><br>
+
+                    <label for="passwd">Password:</label>
+                    <input type="text" id="passwd" readonly><br><br>
+
+                    <input type="submit" id="submit-btn">
+                </form>
+            </div>
+            <script src="scripts/Profile-script.js"></script>
+        </section>
+    </body>
+</html>

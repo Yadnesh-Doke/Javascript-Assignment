@@ -1,0 +1,44 @@
+*{
+	box-sizing:border-box;
+}
+
+body{
+    line-height:1.5;
+    margin:0px;
+	padding:0px;
+}
+
+.clear{
+    clear: both;
+}
+
+header{
+    height:90px;
+    padding:20px 30px;
+    background-color: #00a1ff;
+    color:white;
+}
+
+h1{
+    font-size:30px;
+}
+
+header h1{
+    float:left;
+}
+
+.header-nav{
+    float:right;
+    margin-top: 10px;
+}
+
+.header-nav li {
+    display: inline-block;
+    margin-left: 50px;
+    color:white;
+    font-size:20px;
+}
+
+.header-nav a {
+    color:white;
+}

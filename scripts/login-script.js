@@ -5,6 +5,9 @@ function authenticateUser(){
     if(localStorage.getItem(email)!=null && (password == JSON.parse(localStorage.getItem(email)).password) )
     {
         alert("Login successful!!!");
+        sessionStorage.setItem(email,localStorage.getItem(email));
+        console.log("session storage added.");
+        alert("session storage added.");
         return true;
     }
     else{

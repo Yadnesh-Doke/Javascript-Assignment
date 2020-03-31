@@ -50,10 +50,10 @@ function registerUser(){
         address: document.getElementById("address").value,
         photo: document.getElementById("profile-image").value,
         password: document.getElementById("passwd").value,
+        todoDetails:[],
     };
 
     console.log(user);
-    alert(user);
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("user added to local storage");
 }

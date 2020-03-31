@@ -12,6 +12,7 @@ header{
     height:90px;
     padding:20px 30px;
     background-color: #00a1ff;
+    margin-bottom:40px;
 }
 
 h1{
@@ -23,7 +24,7 @@ h1{
 .register-form{
     width:350px;
     margin:0 auto;
-    margin-top:40px;
+    /* margin-top:40px; */
 }
 
 .register-form h1{
