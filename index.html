@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo-Login</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/login-style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>ToDo App</h1>
+        </header>
+
+        <div class="login-form">
+            <h1>WELCOME</h1>
+            <form onsubmit="return authenticateUser()" action="todoList.html">
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" placeholder="Enter Email address" required>
+
+                <label for="passwd">Password:</label><br>
+                <input type="password" id="passwd" placeholder="Enter Password" required>
+
+                <input type="submit" value="Log in">
+            </form>
+            
+            <p><a href="register.html">Not a registered user? Register here.</a></p>
+        </div>
+        <script src="scripts/login-script.js"></script>
+    </body>
+</html>
