@@ -12,10 +12,55 @@
             <div class="header-nav">
                 <ul>
                     <li><a href="Profile.html">Profile</a></li>
-                    <li><a href="index.html">Log Out</a></li>
+                    <li><a href="index.html" onclick="delSession()">Log Out</a></li>
                 </ul>
             </div>
             <div class="clear"></div>
         </header>
+
+        <section class="todo">
+            <div class="todo-container">
+                <div class="button-container">
+                    <input type="button" class="head-button" value="Add New Task" onclick="addNewTask()">
+                    <input type="button" class="right-button head-button" value="Delete All">
+                    <select name="" id="category" class="right-button">
+                        <option value="All">All</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Office">Office</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="search" id="search-box" class="right-button">
+                    <div class="clear"></div>
+                </div>
+
+                <table>
+                    <tr id="heading-row">
+                        <th></th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Start Date</th>
+                        <th>Due Date</th>
+                        <th>Reminder</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+
+                    <tr>
+                        <td><input type="checkbox"></td>
+                        <td>task1</td>
+                        <td>cat1</td>
+                        <td>s date</td>
+                        <td>d date</td>
+                        <td>No</td>
+                        <td>pending</td>
+                        <td><button>Edit</button></td>
+                        <td><button>Delete</button></td>
+                    </tr>
+                </table>
+            </div><!--todo-container-->
+        </section>
+
+        <script src="scripts/todoList-script.js"></script>
     </body>
 </html>

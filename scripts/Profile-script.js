@@ -1,6 +1,6 @@
 function loadUserData(){
     console.log(sessionStorage.key(0));
-    let user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+    let user = JSON.parse(sessionStorage.getItem(sessionStorage.eky(0)));
 
     console.log(user.fname);
     document.getElementById("fname").value = user.fname;
@@ -33,6 +33,7 @@ function loadData(){
             if(password.match(ptn))
             {
                 updateUser();
+                makeReadOnly();
                 return true;
             }
             else{
@@ -71,4 +72,29 @@ function getGender(){
             return ele[i].value;
         }
     }
+}
+
+function makeReadOnly(){
+    document.getElementById("edit-button").style.display = "block";
+    document.getElementById("submit-btn").style.display = "none";
+
+    let inputs = document.getElementsByTagName("input");
+    for(let i=0; i<inputs.length; i++)
+    {
+        inputs[i].readOnly = true;
+    }
+    // document.getElementsByName("gender").disabled=false;
+    document.getElementsByTagName("textarea")[0].readOnly = true;
+}
+
+document.getElementById("logOut").addEventListener("click",function(){
+    sessionStorage.clear();
+    console.log("Session storage cleared");
+});
+
+function delSession(){
+    console.log("Entered");
+    sessionStorage.clear();
+    console.log("Session storage cleared");
+    alert("Session storage cleared");
 }

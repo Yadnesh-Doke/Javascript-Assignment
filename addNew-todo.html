@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo-Add</title>
+        <link rel="stylesheet" type="text/css" href="css/reset.css">
+        <link rel="stylesheet" type="text/css" href="css/addNew-todo-style.css">
+    </head>
+
+    <body>
+        <header>
+            <h1>ToDo App</h1>
+            <div class="header-nav">
+                <ul>
+                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="index.html" onclick="delSession()">Log Out</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </header>
+
+        <section class="todo-add">
+            <div class="add-task">
+                
+                    <form onsubmit="return addTask()">
+                        <label for="title">Title:</label><br>
+                        <input type="text" id="title" placeholder="Enter title" required>  
+
+                        <label for="category">Category:</label><br>
+                        <select id="category">
+                            <option value="Office">Office</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Other">Other</option>
+                        </select>
+
+                        <label for="start-date">Start date:</label>
+                         <span class="error-msg" id="error-greaterStart">Start date cannot be greater than due date</span> <br>
+                        <input type="date" id="start-date" required>
+
+                        <label for="due-date">Due date:</label><br>
+                        <input type="date" id="due-date" required>
+
+                        <!-- <label for="status">Status:</label><br>
+                        <select id="category">
+                            <option value="pending">Pending</option>
+                        </select> -->
+
+                        <label for="reminder">Is Reminder:</label>
+                        <input type="radio" name="reminderValue" value="yes" oninput="selectReminder()">Yes
+                        <input type="radio" name="reminderValue" value="no" oninput="fadeReminder()">No
+                        <br>
+
+                        <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderDate">Reminder date should be in between start date an due date</span> 
+                        <input type="date" id="reminder-date" class="reminder" required>
+
+                        <!-- <label for="description">Description:</label><br>
+                        <textarea id="description" required></textarea> -->
+
+                        <input type="submit" value="Add">
+
+                    </form>
+            </div>
+        </section>
+        <script src="scripts/addNew-todo-script.js"></script>
+    </body>
+</html>

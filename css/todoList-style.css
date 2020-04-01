@@ -41,4 +41,67 @@ header h1{
 
 .header-nav a {
     color:white;
+    text-decoration: none;
+}
+
+.todo{
+    padding:30px 0px;
+}
+
+.todo-container{
+    width:1000px;
+    /* padding:30px 0px; */
+    margin:auto;
+}
+
+.button-container{
+    height:50px;
+    padding:10px 20px;
+    background-color: #114766;
+}
+
+.head-button{
+    height:30px;
+    padding:4px 10px;
+    font-size:large;
+    background-color: #00a1ff;
+    border:none;
+    color:white;
+    border-radius: 5px;
+}
+
+.right-button{
+    float:right;
+    margin-left:20px;
+    height:30px;
+    border-radius: 5px;
+}
+
+#category{
+    padding:0px 4px;
+}
+
+#search-box{
+    width:120px;
+    height:24px;
+    margin-top:3px;
+}
+
+table{
+    margin:auto;
+    margin-top:50px;
+    width:80%;
+    /* border-collapse: collapse; */
+}
+
+tr{
+    text-align: center;
+    padding-bottom:10px;
+    border-bottom: 1px solid black;
+    line-height: 2.3;
+}
+
+th{
+    padding-bottom:5px;
+    font-size: large;
 }

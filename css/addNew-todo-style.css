@@ -1,0 +1,101 @@
+*{
+	box-sizing:border-box;
+}
+
+body{
+    line-height:1.5;
+    margin:0px;
+	padding:0px;
+}
+
+.clear{
+    clear: both;
+}
+
+header{
+    height:90px;
+    padding:20px 30px;
+    background-color: #00a1ff;
+    color:white;
+}
+
+h1{
+    font-size:30px;
+}
+
+header h1{
+    float:left;
+}
+
+.header-nav{
+    float:right;
+    margin-top: 10px;
+}
+
+.header-nav li {
+    display: inline-block;
+    margin-left: 50px;
+    color:white;
+    font-size:20px;
+}
+
+.header-nav a {
+    color:white;
+    text-decoration: none;
+}
+
+.todo-add{
+    padding:60px;
+}
+
+.add-task{
+    width:350px;
+    margin:auto;
+}
+
+input,select,textarea{
+    width:350px;
+    border:1px solid black;
+    height:40px;
+    border-radius: 5px;
+    margin-bottom:30px;
+    padding:0 10px;
+}
+
+input[type="submit"]{
+    font-size:30px;
+    height:40px;
+    background-color: #00a1ff;
+    color:white;
+    font-weight:700;
+    border:none;
+    margin-bottom:20px;
+    margin-top:10px;
+}
+
+input[type="radio"]{
+    width:auto;
+    border:none;
+    height:auto;
+    border-radius: auto;
+    margin-bottom:20px;
+    margin-left:20px;
+}
+
+input[type="date"]{
+    padding:7px 10px 5px;
+}
+
+textarea{
+    height:70px;
+    padding:5px 10px;
+}
+
+.reminder{
+    display:none;
+}
+
+.error-msg{
+    color:red;
+    display:none;
+}
