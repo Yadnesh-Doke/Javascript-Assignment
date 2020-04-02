@@ -1,6 +1,108 @@
+function fillTable(){
+    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    console.log(user.todoDetails);
+
+    let table = document.getElementById("todoTable");
+    for(let i=0; i<user.todoDetails.length; i++)
+    {
+        let row = document.createElement("tr");
+        
+        row.innerHTML=
+        "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+        "<td>"+ user.todoDetails[i].title +"</td>"+
+        "<td>"+ user.todoDetails[i].category +"</td>"+
+        "<td>"+ user.todoDetails[i].startDate +"</td>"+
+        "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+        "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+        "<td>"+ user.todoDetails[i].status +"</td>"+
+        "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
+        "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+    
+        table.appendChild(row);
+    }
+}
+
+function toEditPage(index){
+    console.log("sessionStorage.Key(0): "+sessionStorage.key(0));
+    sessionStorage.setItem(sessionStorage.key(0),index);
+    console.log(index);
+    window.location.href = "todoEdit.html";
+}
+
+function deleteRow(index){
+    console.log(index);
+    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    user.todoDetails.splice(index,1);
+    localStorage.setItem(user.email,JSON.stringify(user));
+    console.log("task deleted");
+    console.log(user.todoDetails.length);
+    window.location.href="todoList.html";
+}
+
+function check(){
+    let flag = false;
+    let arr = document.getElementsByClassName("checkboxes");
+    for(let i=0; i<arr.length; i++)
+    {
+        if(arr[i].checked == true)
+        {
+            flag = true;
+            break;
+        }
+    }
+
+    if(flag){
+        disableEditAndDelete();
+        document.getElementById("delete-btn").disabled = false;
+        document.getElementById("delete-btn").style.opacity = 1;
+    }
+    else{
+        enableEditAndDelete();
+        document.getElementById("delete-btn").disabled = true;
+        document.getElementById("delete-btn").style.opacity = 0.4;
+    }
+
+}
+
+function disableEditAndDelete(){
+    let arr = document.getElementsByClassName("disable");
+    for(let i=0; i<arr.length; i++)
+    {
+        arr[i].disabled = true;
+        arr[i].style.opacity = 0.4;
+    }
+}
+
+function enableEditAndDelete(){
+    let arr = document.getElementsByClassName("disable");
+    for(let i=0; i<arr.length; i++)
+    {
+        arr[i].disabled = false;
+        arr[i].style.opacity = 1;
+    }
+}
+
+function deleteTodo(){
+    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    let arr = document.getElementsByClassName("checkboxes");
+    for(let i=0; i<arr.length; i++)
+    {
+        if(arr[i].checked == true)
+        {
+            delete user.todoDetails[i];
+        }
+    }
+    user.todoDetails = user.todoDetails.filter(function (element) {
+        return element !== null;
+     });
+    localStorage.setItem(user.email,JSON.stringify(user));
+    window.location.href = "todoList.html";
+}
+
 function delSession(){
     sessionStorage.clear();
     console.log("session cleared");
+    window.location.href="index.html";
 }
 
 function addNewTask(){

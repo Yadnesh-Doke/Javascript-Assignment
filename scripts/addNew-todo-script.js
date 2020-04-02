@@ -7,6 +7,7 @@ function addTask(){
     if(document.getElementById("start-date").value > document.getElementById("due-date").value)
     {
         document.getElementById("error-greaterStart").style.display = "block";
+        // return false;
     }
     else{
         count++;
@@ -16,14 +17,22 @@ function addTask(){
     if(reminder == "yes")
     {
         flag=true;
-        if(document.getElementById("reminder-date").value > document.getElementById("start-date").value && document.getElementById("reminder-date").value < document.getElementById("due-date").value)
+        if(document.getElementById("reminder-date").value == ""){
+            document.getElementById("error-reminderEmpty").style.display = "block";
+            // return false;
+        }
+        else
         {
-            count++;
-        }
-        else{
+            if(document.getElementById("reminder-date").value > document.getElementById("start-date").value && document.getElementById("reminder-date").value < document.getElementById("due-date").value)
+            {
+                count++;
+            }
+            else{
                document.getElementById("error-reminderDate").style.display = "block";
+            //    return false;
+            }
         }
-        
+       
     }//if reminder == "yes"
 
     if(flag==true)
@@ -31,6 +40,10 @@ function addTask(){
         if(count == 2)
         {
             addTaskToArray();
+            return true;
+        }
+        else{
+            return false;
         }
     }
     else if(flag==false)
@@ -38,6 +51,10 @@ function addTask(){
         if(count==1)
         {
             addTaskToArray();
+            return true;
+        }
+        else{
+            return false;
         }
     }//else
 
@@ -80,7 +97,7 @@ function addTaskToArray(){
         reminderD = document.getElementById("reminder-date").value;
     }
     else{
-        reminderD = "";
+        reminderD = "No";
     }
     let task = {
         title : document.getElementById("title").value,
@@ -88,13 +105,14 @@ function addTaskToArray(){
         startDate : document.getElementById("start-date").value,
         dueDate : document.getElementById("due-date").value,
         reminderDate : reminderD,
+        status : "Pending",
     }
 
-    let user = sessionStorage.getItem(sessionStorage.key(0));
+    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    console.log(user.todoDetails);
     user.todoDetails.push(task);
+    localStorage.setItem(user.email,JSON.stringify(user));
     console.log("task added");
     alert("task added");
     console.log(user.todoDetails);
-
-    return true;
 }

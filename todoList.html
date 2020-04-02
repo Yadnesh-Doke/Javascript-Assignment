@@ -6,7 +6,7 @@
         <link rel="stylesheet" type="text/css" href="css/todoList-style.css">
     </head>
 
-    <body>
+    <body onload="fillTable()">
         <header>
             <h1>ToDo App</h1>
             <div class="header-nav">
@@ -22,7 +22,7 @@
             <div class="todo-container">
                 <div class="button-container">
                     <input type="button" class="head-button" value="Add New Task" onclick="addNewTask()">
-                    <input type="button" class="right-button head-button" value="Delete All">
+                    <input type="button" class="right-button head-button" id="delete-btn" value="Delete" onclick="deleteTodo()" disabled>
                     <select name="" id="category" class="right-button">
                         <option value="All">All</option>
                         <option value="Personal">Personal</option>
@@ -33,7 +33,7 @@
                     <div class="clear"></div>
                 </div>
 
-                <table>
+                <table id="todoTable">
                     <tr id="heading-row">
                         <th></th>
                         <th>Title</th>
@@ -46,17 +46,6 @@
                         <th>Delete</th>
                     </tr>
 
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>task1</td>
-                        <td>cat1</td>
-                        <td>s date</td>
-                        <td>d date</td>
-                        <td>No</td>
-                        <td>pending</td>
-                        <td><button>Edit</button></td>
-                        <td><button>Delete</button></td>
-                    </tr>
                 </table>
             </div><!--todo-container-->
         </section>
