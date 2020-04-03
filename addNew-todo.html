@@ -44,7 +44,7 @@
                             <option value="pending">Pending</option>
                         </select> -->
 
-                        <label for="reminder">Is Reminder:</label>
+                        <label>Is Reminder:</label>
                         <input type="radio" name="reminderValue" value="yes" oninput="selectReminder()">Yes
                         <input type="radio" name="reminderValue" value="no" oninput="fadeReminder()">No
                         <br>
@@ -52,6 +52,12 @@
                         <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
                         <span class="error-msg" id="error-reminderDate">Reminder date should be in between start date an due date</span> 
                         <input type="date" id="reminder-date" class="reminder">
+
+                        <label>Is Public:</label>
+                        <input type="radio" name="isPublic" value="yes" id="publicYes">Yes
+                        <input type="radio" name="isPublic" value="no">No
+                        <br>
+
 
                         <!-- <label for="description">Description:</label><br>
                         <textarea id="description" required></textarea> -->

@@ -15,7 +15,8 @@ body{
 header{
     height:90px;
     padding:20px 30px;
-    background-color: #00a1ff;
+    /* background-color: #00a1ff; */
+    background-color: #18567a;
     color:white;
 }
 
@@ -58,6 +59,12 @@ header h1{
     height:50px;
     padding:10px 20px;
     background-color: #114766;
+    overflow:hidden;
+}
+
+.button-container div{
+    float:left;
+    width:50%;
 }
 
 .head-button{
@@ -68,6 +75,11 @@ header h1{
     border:none;
     color:white;
     border-radius: 5px;
+}
+
+.left-tbn{
+    float:left;
+    margin-right:15px;
 }
 
 .right-button{
@@ -87,9 +99,10 @@ header h1{
 }
 
 #search-box{
-    width:120px;
-    height:24px;
-    margin-top:3px;
+    width: 150px;
+    height: 26px;
+    margin-top: 2px;
+    padding: 0px 5px;
 }
 
 table{

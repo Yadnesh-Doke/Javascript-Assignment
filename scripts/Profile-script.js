@@ -1,8 +1,9 @@
 function loadUserData(){
     console.log(sessionStorage.key(0));
-    let user = JSON.parse(sessionStorage.getItem(sessionStorage.eky(0)));
+    let user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
 
     console.log(user.fname);
+    document.getElementById("profile").src = user.photo;
     document.getElementById("fname").value = user.fname;
     document.getElementById("lname").value = user.lname;
     document.getElementById(user.gender).checked=true;
@@ -23,6 +24,17 @@ function edit(){
     // document.getElementsByName("gender").disabled=false;
     document.getElementsByTagName("textarea")[0].readOnly = false;
 }
+
+// function ProfilePic() {
+//     let profileImage = document.getElementById("profile-image").files[0];
+//     let imagereader = new FileReader();
+//     imagereader.readAsDataURL(profileImage);
+
+//     imagereader.onload = function () {
+//         imgdata = imagereader.result;
+//         document.getElementById("profile").src = imgdata;
+//     };
+// }
 
 function loadData(){
     var password = document.getElementById("passwd").value;
@@ -86,11 +98,6 @@ function makeReadOnly(){
     // document.getElementsByName("gender").disabled=false;
     document.getElementsByTagName("textarea")[0].readOnly = true;
 }
-
-document.getElementById("logOut").addEventListener("click",function(){
-    sessionStorage.clear();
-    console.log("Session storage cleared");
-});
 
 function delSession(){
     console.log("Entered");

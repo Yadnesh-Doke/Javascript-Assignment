@@ -11,8 +11,9 @@ body{
 header{
     height:90px;
     padding:20px 30px;
-    background-color: #00a1ff;
-    margin-bottom:40px;
+    /* background-color: #00a1ff; */
+    background-color: #18567a;
+    margin-bottom:50px;
 }
 
 h1{
@@ -22,19 +23,24 @@ h1{
 }
 
 .register-form{
-    width:350px;
+    width:400px;
     margin:0 auto;
     /* margin-top:40px; */
+    padding: 20px 30px;
+    background-color: cadetblue;
+    border-radius: 10px;
+    box-shadow: 10px 10px 15px #929090;
+    margin-bottom: 50px;
 }
 
 .register-form h1{
-    color: black;
+    color: white;
     text-align:center;
     margin-bottom:20px;
 }
 
 input,textarea{
-    width:350px;
+    width:340px;
     border:1px solid black;
     height:40px;
     border-radius: 5px;
@@ -52,13 +58,18 @@ input[type="radio"]{
 }
 
 input[type="submit"]{
-    width:350px;
+    width:340px;
     font-size:30px;
-    background-color: #00a1ff;
+    background-color: #0f425f;
     color:white;
     font-weight:600;
     border:none;
     margin:30px 0;
+}
+
+img{
+    width:100px;
+    height:100px;
 }
 
 textarea{
@@ -70,4 +81,10 @@ input[type="file"]{
     height: auto;
     width:auto;
     border:none;
+    color:white;
+}
+
+label {
+    color: white;
+    font-size: 20px;
 }

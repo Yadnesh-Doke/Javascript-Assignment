@@ -1,3 +1,5 @@
+let imgdata;
+
 function validateData(){
     var useremail = document.getElementById("email").value; 
     var password = document.getElementById("passwd").value;
@@ -41,6 +43,17 @@ function validateData(){
     }
 }//validateData()
 
+function ProfilePic() {
+    let profileImage = document.getElementById("profile-image").files[0];
+    let imagereader = new FileReader();
+    imagereader.readAsDataURL(profileImage);
+
+    imagereader.onload = function () {
+        imgdata = imagereader.result;
+        document.getElementById("profile").src = imgdata;
+    };
+}
+
 function registerUser(){
     var user = {
         email : document.getElementById("email").value,
@@ -48,13 +61,14 @@ function registerUser(){
         lname : document.getElementById("lname").value,
         gender: getGender(),
         address: document.getElementById("address").value,
-        photo: document.getElementById("profile-image").value,
+        photo: imgdata,
         password: document.getElementById("passwd").value,
         todoDetails:[],
     };
 
     console.log(user);
     localStorage.setItem(user.email,JSON.stringify(user));
+    alert("user added");
     console.log("user added to local storage");
 }
 

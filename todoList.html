@@ -21,16 +21,24 @@
         <section class="todo">
             <div class="todo-container">
                 <div class="button-container">
-                    <input type="button" class="head-button" value="Add New Task" onclick="addNewTask()">
-                    <input type="button" class="right-button head-button" id="delete-btn" value="Delete" onclick="deleteTodo()" disabled>
-                    <select name="" id="category" class="right-button">
-                        <option value="All">All</option>
-                        <option value="Personal">Personal</option>
-                        <option value="Office">Office</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <input type="search" id="search-box" class="right-button">
-                    <div class="clear"></div>
+                    <div>
+                        <input type="button" class="head-button left-tbn" value="Add New Task" onclick="addNewTask()">
+                        <input type="button" class="head-button left-btn" value="Done" onclick="markDone()">
+                    </div>
+                    
+                    <!-- <div class="clear"></div> -->
+                    <div>
+                        <input type="button" class="right-button head-button" id="delete-btn" value="Delete" onclick="deleteTodo()" disabled>
+                        <select id="category" class="right-button" onchange="filter()">
+                            <option value="All">All</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Office">Office</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <input type="search" placeholder="Search" id="search-box" class="right-button" oninput="search(this.value)">
+                        <!-- <div class="clear"></div> -->
+
+                    </div>
                 </div>
 
                 <table id="todoTable">
@@ -45,6 +53,7 @@
                         <th>Edit</th>
                         <th>Delete</th>
                     </tr>
+                    <tbody id="table"></tbody>
 
                 </table>
             </div><!--todo-container-->

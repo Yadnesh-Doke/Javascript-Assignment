@@ -90,6 +90,18 @@ function getReminderValue(){
     }
 }
 
+function getPublic(){
+    let ele = document.getElementsByName("isPublic");
+    for(let i=0; i<ele.length; i++)
+    {
+        if(ele[i].checked)
+        {
+            console.log(ele[i].value);
+            return ele[i].value;
+        }
+    }
+}
+
 function addTaskToArray(){
     let e = document.getElementById("category");
     let reminderD = "";
@@ -105,6 +117,7 @@ function addTaskToArray(){
         startDate : document.getElementById("start-date").value,
         dueDate : document.getElementById("due-date").value,
         reminderDate : reminderD,
+        isPublic:getPublic(),
         status : "Pending",
     }
 

@@ -3,7 +3,7 @@
     <head>
         <title>ToDo-Edit</title>
         <link rel="stylesheet" type="text/css" href="css/reset.css">
-        <link rel="stylesheet" type="text/css" href="css/addNew-todo-style.css">
+        <link rel="stylesheet" type="text/css" href="css/todoEdit-style.css">
     </head>
 
     <body onload="fillData()">
@@ -11,7 +11,7 @@
             <h1>ToDo App</h1>
             <div class="header-nav">
                 <ul>
-                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="todoList.html" onclick="updateSession()">Main Page</a></li>
                     <li><a href="index.html" onclick="delSession()">Log Out</a></li>
                 </ul>
             </div>
@@ -21,12 +21,12 @@
         <section class="todo-add">
             <div class="add-task">
                 
-                    <form onsubmit="return addTask()" action="todoList.html">
+                    <form onsubmit="return addTask()">
                         <label for="title">Title:</label><br>
                         <input type="text" id="title" placeholder="Enter title" required>  
 
                         <label for="category">Category:</label><br>
-                        <select id="category">
+                        <select id="category"> 
                             <option value="Office">Office</option>
                             <option value="Personal">Personal</option>
                             <option value="Other">Other</option>
@@ -45,8 +45,8 @@
                         </select> -->
 
                         <label for="reminder">Is Reminder:</label>
-                        <input type="radio" name="reminderValue" value="yes" oninput="selectReminder()">Yes
-                        <input type="radio" name="reminderValue" value="no" oninput="fadeReminder()">No
+                        <input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()" class="disabledInput">Yes
+                        <input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()" class="disabledInput">No
                         <br>
 
                         <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
@@ -55,9 +55,8 @@
 
                         <!-- <label for="description">Description:</label><br>
                         <textarea id="description" required></textarea> -->
-
-                        <input type="submit" value="Add">
-
+                        
+                        <input type="submit" value="Submit">
                     </form>
             </div>
         </section>
