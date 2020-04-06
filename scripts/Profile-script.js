@@ -1,6 +1,17 @@
+(function(){
+    if(JSON.parse(sessionStorage.getItem(sessionStorage.key(sessionStorage.length - 1))) == null)
+    {
+        alert("You are not logged in.\nPlease Log in first.")
+        window.location.href = "index.html";
+    }
+})();
+
+let imgdata;
+let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
+
 function loadUserData(){
     console.log(sessionStorage.key(0));
-    let user = JSON.parse(sessionStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
 
     console.log(user.fname);
     document.getElementById("profile").src = user.photo;
@@ -9,7 +20,6 @@ function loadUserData(){
     document.getElementById(user.gender).checked=true;
     document.getElementById("address").value = user.address;
     document.getElementById("passwd").value = user.password;
-    
 }
 
 function edit(){
@@ -23,18 +33,19 @@ function edit(){
     }
     // document.getElementsByName("gender").disabled=false;
     document.getElementsByTagName("textarea")[0].readOnly = false;
+    document.getElementById("profile-image").style.display = "block";
 }
 
-// function ProfilePic() {
-//     let profileImage = document.getElementById("profile-image").files[0];
-//     let imagereader = new FileReader();
-//     imagereader.readAsDataURL(profileImage);
+function ProfilePic() {
+    let profileImage = document.getElementById("profile-image").files[0];
+    let imagereader = new FileReader();
+    imagereader.readAsDataURL(profileImage);
 
-//     imagereader.onload = function () {
-//         imgdata = imagereader.result;
-//         document.getElementById("profile").src = imgdata;
-//     };
-// }
+    imagereader.onload = function () {
+        imgdata = imagereader.result;
+        document.getElementById("profile").src = imgdata;
+    };
+}
 
 function loadData(){
     var password = document.getElementById("passwd").value;
@@ -61,12 +72,13 @@ function loadData(){
 }//loadData()
 
 function updateUser(){
-    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     user.fname = document.getElementById("fname").value;
     user.lname = document.getElementById("lname").value;
     user.gender = getGender();
     user.address = document.getElementById("address").value;
     user.password = document.getElementById("passwd").value;
+    user.photo = imgdata;
 
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("User profile updated");

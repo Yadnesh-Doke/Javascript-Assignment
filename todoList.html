@@ -11,7 +11,8 @@
             <h1>ToDo App</h1>
             <div class="header-nav">
                 <ul>
-                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="Profile.html"> <img src="images/profile-icon-9.png" alt="img" id="profile-image"> </a></li>
+                    <li id="profile-link-li"><a href="Profile.html" id="profile-link">Profile</a></li>
                     <li><a href="index.html" onclick="delSession()">Log Out</a></li>
                 </ul>
             </div>
@@ -26,7 +27,6 @@
                         <input type="button" class="head-button left-btn" value="Done" onclick="markDone()">
                     </div>
                     
-                    <!-- <div class="clear"></div> -->
                     <div>
                         <input type="button" class="right-button head-button" id="delete-btn" value="Delete" onclick="deleteTodo()" disabled>
                         <select id="category" class="right-button" onchange="filter()">
@@ -36,14 +36,12 @@
                             <option value="Other">Other</option>
                         </select>
                         <input type="search" placeholder="Search" id="search-box" class="right-button" oninput="search(this.value)">
-                        <!-- <div class="clear"></div> -->
-
                     </div>
                 </div>
 
                 <table id="todoTable">
                     <tr id="heading-row">
-                        <th></th>
+                        <th><input type="checkbox" id="head-checkbox" onchange="checkAll()"></th>
                         <th>Title</th>
                         <th>Category</th>
                         <th>Start Date</th>

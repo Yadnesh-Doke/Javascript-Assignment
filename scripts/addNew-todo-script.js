@@ -1,9 +1,20 @@
+(function(){
+    let user = JSON.parse(sessionStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
+    if( user == null)
+    {
+        alert("You are not logged in.\nPlease Log in first.")
+        window.location.href = "index.html";
+    }
+    else{
+        document.getElementById("profile-image").src = user.photo;
+    }
+})();
+
 let flag=false;
+let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
 
 function addTask(){
-
     let count=0;
-    
     if(document.getElementById("start-date").value > document.getElementById("due-date").value)
     {
         document.getElementById("error-greaterStart").style.display = "block";
@@ -121,11 +132,29 @@ function addTaskToArray(){
         status : "Pending",
     }
 
-    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     console.log(user.todoDetails);
     user.todoDetails.push(task);
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("task added");
     alert("task added");
     console.log(user.todoDetails);
+}
+
+function checkRadio(value){
+    if(value == 1){
+        document.getElementById("yes").checked = true;
+    }
+    else if(value == 2){
+        document.getElementById("no").checked = true;
+    }
+}
+
+function checkPublic(value){
+    if(value == 1){
+        document.getElementById("publicYes").checked = true;
+    }
+    else if(value == 2){
+        document.getElementById("publicNo").checked = true;
+    }
 }

@@ -75,6 +75,7 @@ input,textarea{
 
 #fname{
     margin-left:24px;
+    margin-top:30px;
 }
 
 #lname{
@@ -88,7 +89,7 @@ input,textarea{
 #profile{
     width:150px;
     height:150px;
-    margin-bottom:30px;
+    /* margin-bottom:30px; */
     margin-left: 175px;
 }
 
@@ -104,6 +105,13 @@ input,textarea{
 
 #passwd{
     margin-left:39px;
+}
+
+#profile-image{
+    display:none;
+    margin-left:175px;
+    border:none;
+    width:auto;
 }
 
 input[type="radio"]{
@@ -126,6 +134,7 @@ label{
     padding: 40px 12px;
     background-color: #ffffff;
     border-radius: 10px;
+    color:white;
     background-color: cadetblue;
     box-shadow: 10px 10px 15px #929090;
 }

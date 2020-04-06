@@ -11,7 +11,8 @@
             <h1>ToDo App</h1>
             <div class="header-nav">
                 <ul>
-                    <li><a href="Profile.html">Profile</a></li>
+                    <li><a href="Profile.html"> <img src="images/profile-icon-9.png" alt="img" id="profile-image"> </a></li>
+                    <li id="profile-link-li"><a href="Profile.html" id="profile-link">Profile</a></li>
                     <li><a href="index.html" onclick="delSession()">Log Out</a></li>
                 </ul>
             </div>
@@ -39,14 +40,9 @@
                         <label for="due-date">Due date:</label><br>
                         <input type="date" id="due-date" required>
 
-                        <!-- <label for="status">Status:</label><br>
-                        <select id="category">
-                            <option value="pending">Pending</option>
-                        </select> -->
-
                         <label>Is Reminder:</label>
-                        <input type="radio" name="reminderValue" value="yes" oninput="selectReminder()">Yes
-                        <input type="radio" name="reminderValue" value="no" oninput="fadeReminder()">No
+                        <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()">Yes</span>
+                        <span onclick="checkRadio(2)"><input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()">No</span>
                         <br>
 
                         <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
@@ -54,13 +50,9 @@
                         <input type="date" id="reminder-date" class="reminder">
 
                         <label>Is Public:</label>
-                        <input type="radio" name="isPublic" value="yes" id="publicYes">Yes
-                        <input type="radio" name="isPublic" value="no">No
+                        <span onclick="checkPublic(1)"><input type="radio" name="isPublic" value="yes" id="publicYes">Yes</span>
+                        <span onclick="checkPublic(2)"><input type="radio" name="isPublic" value="no" id="publicNo">No</span>
                         <br>
-
-
-                        <!-- <label for="description">Description:</label><br>
-                        <textarea id="description" required></textarea> -->
 
                         <input type="submit" value="Add">
 

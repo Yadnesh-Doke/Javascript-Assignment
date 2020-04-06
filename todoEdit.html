@@ -45,13 +45,18 @@
                         </select> -->
 
                         <label for="reminder">Is Reminder:</label>
-                        <input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()" class="disabledInput">Yes
-                        <input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()" class="disabledInput">No
+                        <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()" class="disabledInput">Yes</span>
+                        <span onclick="checkRadio(2)"><input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()" class="disabledInput">No</span>
                         <br>
 
                         <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
                         <span class="error-msg" id="error-reminderDate">Reminder date should be in between start date an due date</span> 
                         <input type="date" id="reminder-date" class="reminder">
+
+                        <label>Is Public:</label>
+                        <span onclick="checkPublic(1)"><input type="radio" name="isPublic" value="yes" id="publicYes">Yes</span>
+                        <span onclick="checkPublic(2)"><input type="radio" name="isPublic" value="no" id="publicNo">No</span>
+                        <br>
 
                         <!-- <label for="description">Description:</label><br>
                         <textarea id="description" required></textarea> -->

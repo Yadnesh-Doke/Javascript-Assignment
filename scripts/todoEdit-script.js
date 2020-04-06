@@ -1,7 +1,16 @@
+(function(){
+    if(JSON.parse(sessionStorage.getItem(sessionStorage.key(sessionStorage.length - 1))) == null)
+    {
+        alert("You are not logged in.\nPlease Log in first.")
+        window.location.href = "index.html";
+    }
+})();
+
 let flag=false;
+let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
 
 function fillData(){
-    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let index = sessionStorage.getItem(user.email);
     console.log("index: "+index);
 
@@ -111,7 +120,7 @@ function getReminderValue(){
 }
 
 function updateTaskToArray(){
-    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let index = sessionStorage.getItem(user.email);
     console.log("index: "+index);
 
@@ -129,6 +138,7 @@ function updateTaskToArray(){
         user.todoDetails[index].startDate = document.getElementById("start-date").value;
         user.todoDetails[index].dueDate = document.getElementById("due-date").value;
         user.todoDetails[index].reminderDate = reminderD;
+        user.todoDetails[index].isPublic = getPublic();
 
     console.log(user.todoDetails[index]);
     // user.todoDetails.push(task);
@@ -139,6 +149,36 @@ function updateTaskToArray(){
 
 function updateSession(){
     alert("entered");
-    let user = JSON.parse(localStorage.getItem(sessionStorage.key(0)));
+    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     sessionStorage.setItem(user.email,JSON.stringify(user));
+}
+
+function checkRadio(value){
+    if(value == 1){
+        document.getElementById("yes").checked = true;
+    }
+    else if(value == 2){
+        document.getElementById("no").checked = true;
+    }
+}
+
+function getPublic(){
+    let ele = document.getElementsByName("isPublic");
+    for(let i=0; i<ele.length; i++)
+    {
+        if(ele[i].checked)
+        {
+            console.log(ele[i].value);
+            return ele[i].value;
+        }
+    }
+}
+
+function checkPublic(value){
+    if(value == 1){
+        document.getElementById("publicYes").checked = true;
+    }
+    else if(value == 2){
+        document.getElementById("publicNo").checked = true;
+    }
 }
