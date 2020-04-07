@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>ToDo-Edit</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/todoEdit-style.css">
     </head>
@@ -21,7 +22,7 @@
         <section class="todo-add">
             <div class="add-task">
                 
-                    <form onsubmit="return addTask()">
+                    <form onsubmit="return addTask()" action="todoList.html">
                         <label for="title">Title:</label><br>
                         <input type="text" id="title" placeholder="Enter title" required>  
 
@@ -33,16 +34,11 @@
                         </select>
 
                         <label for="start-date">Start date:</label>
-                         <span class="error-msg" id="error-greaterStart">Start date cannot be greater than due date</span> <br>
                         <input type="date" id="start-date" required>
 
-                        <label for="due-date">Due date:</label><br>
+                        <label for="due-date">Due date:</label>
+                        <span class="error-msg" id="error-greaterStart">Due date cannot be smaller than start date</span>
                         <input type="date" id="due-date" required>
-
-                        <!-- <label for="status">Status:</label><br>
-                        <select id="category">
-                            <option value="pending">Pending</option>
-                        </select> -->
 
                         <label for="reminder">Is Reminder:</label>
                         <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()" class="disabledInput">Yes</span>

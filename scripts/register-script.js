@@ -1,7 +1,7 @@
 let imgdata;
 
 function validateData(){
-    var useremail = document.getElementById("email").value; 
+    var useremail = document.getElementById("email").value.toLowerCase(); 
     var password = document.getElementById("passwd").value;
     var confirm_passwd = document.getElementById("confirm-passwd").value;
 
@@ -56,7 +56,7 @@ function ProfilePic() {
 
 function registerUser(){
     var user = {
-        email : document.getElementById("email").value,
+        email : document.getElementById("email").value.toLowerCase(),
         fname : document.getElementById("fname").value,
         lname : document.getElementById("lname").value,
         gender: getGender(),
@@ -68,7 +68,6 @@ function registerUser(){
 
     console.log(user);
     localStorage.setItem(user.email,JSON.stringify(user));
-    alert("user added");
     console.log("user added to local storage");
 }
 

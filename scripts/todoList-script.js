@@ -10,7 +10,6 @@ let table = document.getElementById("table");
 let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
 
 function fillTable(){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     console.log(user.todoDetails);
     document.getElementById("profile-image").src = user.photo;
 
@@ -18,17 +17,32 @@ function fillTable(){
     for(let i=0; i<user.todoDetails.length; i++)
     {
         let row = document.createElement("tr");
-        
-        row.innerHTML=
-        "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
-        "<td>"+ user.todoDetails[i].title +"</td>"+
-        "<td>"+ user.todoDetails[i].category +"</td>"+
-        "<td>"+ user.todoDetails[i].startDate +"</td>"+
-        "<td>"+ user.todoDetails[i].dueDate +"</td>"+
-        "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
-        "<td>"+ user.todoDetails[i].status +"</td>"+
-        "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
-        "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+        if(user.todoDetails[i].status === "Done")
+        {
+            row.innerHTML=
+            "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+            "<td>"+ user.todoDetails[i].title +"</td>"+
+            "<td>"+ user.todoDetails[i].category +"</td>"+
+            "<td>"+ user.todoDetails[i].startDate +"</td>"+
+            "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+            "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+            "<td>"+ user.todoDetails[i].status +"</td>"+
+            "<td>"+ "<button style='opacity:0.5' disabled>Edit</button>" +"</td>"+
+            "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+        }
+        else if(user.todoDetails[i].status === "Pending")
+        {
+            row.innerHTML=
+            "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+            "<td>"+ user.todoDetails[i].title +"</td>"+
+            "<td>"+ user.todoDetails[i].category +"</td>"+
+            "<td>"+ user.todoDetails[i].startDate +"</td>"+
+            "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+            "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+            "<td>"+ user.todoDetails[i].status +"</td>"+
+            "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
+            "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+        }
     
         table.appendChild(row);
     }
@@ -43,7 +57,6 @@ function toEditPage(index){
 
 function deleteRow(index){
     console.log(index);
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     user.todoDetails.splice(index,1);
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("task deleted");
@@ -67,11 +80,13 @@ function check(){
         disableEditAndDelete();
         document.getElementById("delete-btn").disabled = false;
         document.getElementById("delete-btn").style.opacity = 1;
+        document.getElementById("done-btn").style.display = "block";
     }
     else{
         enableEditAndDelete();
         document.getElementById("delete-btn").disabled = true;
         document.getElementById("delete-btn").style.opacity = 0.4;
+        document.getElementById("done-btn").style.display = "none";
     }
 }
 
@@ -86,6 +101,7 @@ function checkAll(){
         disableEditAndDelete();
         document.getElementById("delete-btn").disabled = false;
         document.getElementById("delete-btn").style.opacity = 1;
+        document.getElementById("done-btn").style.display = "block";
     }
     else{
         for(let i=0; i<arr.length; i++)
@@ -95,6 +111,7 @@ function checkAll(){
         enableEditAndDelete();
         document.getElementById("delete-btn").disabled = true;
         document.getElementById("delete-btn").style.opacity = 0.4;
+        document.getElementById("done-btn").style.display = "none";
     }
 }
 
@@ -160,11 +177,13 @@ function filter(){
             table.removeChild(tableRows[x]);
         }
 
+        let flag = false;
         for(let i=0; i<user.todoDetails.length; i++)
         {
             console.log("entered for");
             if(user.todoDetails[i].category == category)
             {
+                flag = true;
                 console.log("inner if");
                 let row = document.createElement("tr");
 
@@ -182,6 +201,11 @@ function filter(){
                 table.appendChild(row);
             }//if
         }//for
+
+        if(flag === false)
+        {
+            alert("No match found.");
+        }
     }//outer if
     else if(category == "All")
     {
@@ -192,13 +216,13 @@ function filter(){
         }
         fillTable();
     }
+
 }//filter
 
 function search(value){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     for (let i = 0; i < user.todoDetails.length; i++) {
 
-        if(user.todoDetails[i].title==value.trim()){
+        if((user.todoDetails[i].title)==value.trim()){
             
             var tableRows = table.getElementsByTagName('tr');
             var rowCount = tableRows.length;
@@ -235,7 +259,6 @@ function search(value){
 }
 
 function markDone(){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let arr = document.getElementsByClassName("checkboxes");
     for(let i=0; i<arr.length; i++)
     {
@@ -246,6 +269,5 @@ function markDone(){
     }
 
     localStorage.setItem(user.email,JSON.stringify(user));
-
     window.location.reload();
 }

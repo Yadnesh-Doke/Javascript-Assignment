@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>ToDo-Add</title>
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="css/reset.css">
         <link rel="stylesheet" type="text/css" href="css/addNew-todo-style.css">
     </head>
@@ -13,6 +14,7 @@
                 <ul>
                     <li><a href="Profile.html"> <img src="images/profile-icon-9.png" alt="img" id="profile-image"> </a></li>
                     <li id="profile-link-li"><a href="Profile.html" id="profile-link">Profile</a></li>
+                    <li><a href="todoList.html">Main Page</a></li>
                     <li><a href="index.html" onclick="delSession()">Log Out</a></li>
                 </ul>
             </div>
@@ -34,10 +36,10 @@
                         </select>
 
                         <label for="start-date">Start date:</label>
-                         <span class="error-msg" id="error-greaterStart">Start date cannot be greater than due date</span> <br>
                         <input type="date" id="start-date" required>
 
-                        <label for="due-date">Due date:</label><br>
+                        <label for="due-date">Due date:</label>
+                        <span class="error-msg" id="error-greaterStart">Due date cannot be smaller than start date</span>
                         <input type="date" id="due-date" required>
 
                         <label>Is Reminder:</label>

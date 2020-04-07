@@ -1,6 +1,8 @@
+let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
+
 (function(){
-    let user = JSON.parse(sessionStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
-    if( user == null)
+    let session = JSON.parse(sessionStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
+    if( session == null)
     {
         alert("You are not logged in.\nPlease Log in first.")
         window.location.href = "index.html";
@@ -10,8 +12,8 @@
     }
 })();
 
+
 let flag=false;
-let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
 
 function addTask(){
     let count=0;
@@ -21,6 +23,7 @@ function addTask(){
         // return false;
     }
     else{
+        document.getElementById("error-greaterStart").style.display = "none";
         count++;
     }
 
@@ -34,6 +37,7 @@ function addTask(){
         }
         else
         {
+            document.getElementById("error-reminderEmpty").style.display = "none";
             if(document.getElementById("reminder-date").value > document.getElementById("start-date").value && document.getElementById("reminder-date").value < document.getElementById("due-date").value)
             {
                 count++;
@@ -45,6 +49,10 @@ function addTask(){
         }
        
     }//if reminder == "yes"
+    else{
+        document.getElementById("error-reminderEmpty").style.display = "none";
+        document.getElementById("error-reminderDate").style.display = "none";
+    }
 
     if(flag==true)
     {
@@ -72,20 +80,24 @@ function addTask(){
 }//addtask
 
 function selectReminder(){
+    document.getElementById("error-reminderEmpty").style.display = "none";
     console.log("reminder");
     let rem = document.getElementsByClassName("reminder");
     for(let i=0; i<rem.length; i++)
     {
         rem[i].style.display = "block";
     }
+    document.getElementById("error-reminderDate").style.display = "none";
 }
 
 function fadeReminder(){
+    document.getElementById("error-reminderEmpty").style.display = "none";
     let rem = document.getElementsByClassName("reminder");
     for(let i=0; i<rem.length; i++)
     {
         rem[i].style.display = "none";
     }
+    document.getElementById("error-reminderDate").style.display = "none";
 }
 
 function getReminderValue(){
@@ -137,7 +149,7 @@ function addTaskToArray(){
     user.todoDetails.push(task);
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("task added");
-    alert("task added");
+    alert("Task added successfully!!");
     console.log(user.todoDetails);
 }
 

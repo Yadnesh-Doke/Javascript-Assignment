@@ -6,8 +6,8 @@
     }
 })();
 
-let imgdata;
 let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
+let imgdata = user.photo;
 
 function loadUserData(){
     console.log(sessionStorage.key(0));
@@ -112,8 +112,6 @@ function makeReadOnly(){
 }
 
 function delSession(){
-    console.log("Entered");
     sessionStorage.clear();
     console.log("Session storage cleared");
-    alert("Session storage cleared");
 }
