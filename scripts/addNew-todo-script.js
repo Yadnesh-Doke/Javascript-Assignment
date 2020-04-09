@@ -9,6 +9,8 @@ let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.len
     }
     else{
         document.getElementById("profile-image").src = user.photo;
+        let today = new Date().toISOString().substr(0, 10);
+        document.getElementById("start-date").setAttribute("min", today);
     }
 })();
 
@@ -16,67 +18,27 @@ let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.len
 let flag=false;
 
 function addTask(){
-    let count=0;
-    if(document.getElementById("start-date").value > document.getElementById("due-date").value)
-    {
-        document.getElementById("error-greaterStart").style.display = "block";
-        // return false;
-    }
-    else{
-        document.getElementById("error-greaterStart").style.display = "none";
-        count++;
-    }
-
     let reminder = getReminderValue();
     if(reminder == "yes")
     {
         flag=true;
         if(document.getElementById("reminder-date").value == ""){
             document.getElementById("error-reminderEmpty").style.display = "block";
-            // return false;
+            return false;
         }
         else
         {
             document.getElementById("error-reminderEmpty").style.display = "none";
-            if(document.getElementById("reminder-date").value > document.getElementById("start-date").value && document.getElementById("reminder-date").value < document.getElementById("due-date").value)
-            {
-                count++;
-            }
-            else{
-               document.getElementById("error-reminderDate").style.display = "block";
-            //    return false;
-            }
+            addTaskToArray();
+            return true;
         }
        
     }//if reminder == "yes"
     else{
         document.getElementById("error-reminderEmpty").style.display = "none";
-        document.getElementById("error-reminderDate").style.display = "none";
+        addTaskToArray();
+        return true;
     }
-
-    if(flag==true)
-    {
-        if(count == 2)
-        {
-            addTaskToArray();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    else if(flag==false)
-    {
-        if(count==1)
-        {
-            addTaskToArray();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }//else
-
 }//addtask
 
 function selectReminder(){
@@ -87,7 +49,6 @@ function selectReminder(){
     {
         rem[i].style.display = "block";
     }
-    document.getElementById("error-reminderDate").style.display = "none";
 }
 
 function fadeReminder(){
@@ -97,7 +58,7 @@ function fadeReminder(){
     {
         rem[i].style.display = "none";
     }
-    document.getElementById("error-reminderDate").style.display = "none";
+    document.getElementById("reminder-date").value = "";
 }
 
 function getReminderValue(){
@@ -169,4 +130,23 @@ function checkPublic(value){
     else if(value == 2){
         document.getElementById("publicNo").checked = true;
     }
+}
+
+function minDueDate(value){
+    document.getElementById("due-date").setAttribute("min", value);
+    document.getElementById("reminder-date").setAttribute("min", value);
+    if(document.getElementById("due-date").value == "")
+    {}
+    else if(document.getElementById("due-date").value < document.getElementById("start-date").value)
+    {
+        document.getElementById("error-greaterStart").style.display = "block";
+    }
+    else{
+        document.getElementById("error-greaterStart").style.display = "none";
+    }
+}
+
+function maxRemDate(value){
+    document.getElementById("error-greaterStart").style.display = "none";
+    document.getElementById("reminder-date").setAttribute("max", value);
 }

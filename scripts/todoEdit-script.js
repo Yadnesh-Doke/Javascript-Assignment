@@ -16,7 +16,14 @@ function fillData(){
     document.getElementById("title").value = user.todoDetails[index].title;
     document.getElementById("category").value = user.todoDetails[index].category;
     document.getElementById("start-date").value = user.todoDetails[index].startDate;
+
+    document.getElementById("start-date").setAttribute("min", user.todoDetails[index].startDate);
+    document.getElementById("due-date").setAttribute("min", user.todoDetails[index].startDate);
+    
     document.getElementById("due-date").value = user.todoDetails[index].dueDate;
+
+    document.getElementById("reminder-date").setAttribute("min", user.todoDetails[index].startDate);
+    document.getElementById("reminder-date").setAttribute("max", user.todoDetails[index].dueDate);
     
     let reminder = user.todoDetails[index].reminderDate;
     if(reminder === "No")
@@ -57,71 +64,32 @@ function fadeReminder(){
         rem[i].style.display = "none";
     }
     document.getElementById("error-reminderDate").style.display = "none";
+    document.getElementById("reminder-date").value = "";
 }
 
 function addTask(){
-    let count=0;
-    
-    if(document.getElementById("start-date").value > document.getElementById("due-date").value)
-    {
-        document.getElementById("error-greaterStart").style.display = "block";
-        // return false;
-    }
-    else{
-        document.getElementById("error-greaterStart").style.display = "none";
-        count++;
-    }
-
     let reminder = getReminderValue();
     if(reminder == "yes")
     {
         flag=true;
         if(document.getElementById("reminder-date").value == ""){
             document.getElementById("error-reminderEmpty").style.display = "block";
-            // return false;
+            return false;
         }
         else
         {
             document.getElementById("error-reminderEmpty").style.display = "none";
-            if(document.getElementById("reminder-date").value > document.getElementById("start-date").value && document.getElementById("reminder-date").value < document.getElementById("due-date").value)
-            {
-                count++;
-            }
-            else{
-                document.getElementById("error-reminderEmpty").style.display = "none";
-               document.getElementById("error-reminderDate").style.display = "block";
-            //    return false;
-            }
+            updateTaskToArray();
+            return true;
         }
        
     }//if reminder == "yes"
     else{
         document.getElementById("error-reminderEmpty").style.display = "none";
         document.getElementById("error-reminderDate").style.display = "none";
+        updateTaskToArray();
+        return true;
     }
-
-    if(flag==true)
-    {
-        if(count == 2)
-        {
-            updateTaskToArray();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-    else if(flag==false)
-    {
-        if(count==1)
-        {
-            updateTaskToArray();
-            return true;
-        }
-        else{
-            return false;
-        }
-    }//else
 }//addTask
 
 function getReminderValue(){
@@ -138,7 +106,6 @@ function getReminderValue(){
 }
 
 function updateTaskToArray(){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let index = sessionStorage.getItem(user.email);
     console.log("index: "+index);
 
@@ -159,7 +126,6 @@ function updateTaskToArray(){
         user.todoDetails[index].isPublic = getPublic();
 
     console.log(user.todoDetails[index]);
-    // user.todoDetails.push(task);
     localStorage.setItem(user.email,JSON.stringify(user));
     console.log("Task updated successfully");
     alert("Task updated successfully!!");
@@ -197,4 +163,23 @@ function checkPublic(value){
     else if(value == 2){
         document.getElementById("publicNo").checked = true;
     }
+}
+
+function minDueDate(value){
+    document.getElementById("due-date").setAttribute("min", value);
+    document.getElementById("reminder-date").setAttribute("min", value);
+    if(document.getElementById("due-date").value == "")
+    {}
+    else if(document.getElementById("due-date").value < document.getElementById("start-date").value)
+    {
+        document.getElementById("error-greaterStart").style.display = "block";
+    }
+    else{
+        document.getElementById("error-greaterStart").style.display = "none";
+    }
+}
+
+function maxRemDate(value){
+    document.getElementById("error-greaterStart").style.display = "none";
+    document.getElementById("reminder-date").setAttribute("max", value);
 }

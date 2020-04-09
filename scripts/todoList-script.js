@@ -14,46 +14,53 @@ function fillTable(){
     document.getElementById("profile-image").src = user.photo;
 
     let table = document.getElementById("table");
-    for(let i=0; i<user.todoDetails.length; i++)
+    if(user.todoDetails.length === 0)
     {
-        let row = document.createElement("tr");
-        if(user.todoDetails[i].status === "Done")
-        {
-            row.innerHTML=
-            "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
-            "<td>"+ user.todoDetails[i].title +"</td>"+
-            "<td>"+ user.todoDetails[i].category +"</td>"+
-            "<td>"+ user.todoDetails[i].startDate +"</td>"+
-            "<td>"+ user.todoDetails[i].dueDate +"</td>"+
-            "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
-            "<td>"+ user.todoDetails[i].status +"</td>"+
-            "<td>"+ "<button style='opacity:0.5' disabled>Edit</button>" +"</td>"+
-            "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
-        }
-        else if(user.todoDetails[i].status === "Pending")
-        {
-            row.innerHTML=
-            "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
-            "<td>"+ user.todoDetails[i].title +"</td>"+
-            "<td>"+ user.todoDetails[i].category +"</td>"+
-            "<td>"+ user.todoDetails[i].startDate +"</td>"+
-            "<td>"+ user.todoDetails[i].dueDate +"</td>"+
-            "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
-            "<td>"+ user.todoDetails[i].status +"</td>"+
-            "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
-            "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
-        }
-    
-        table.appendChild(row);
+        alert("No records found");
     }
-}
+    else
+    {
+        for(let i=0; i<user.todoDetails.length; i++)
+        {
+            let row = document.createElement("tr");
+            if(user.todoDetails[i].status === "Done")
+            {
+                row.innerHTML=
+                "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+                "<td>"+ user.todoDetails[i].title +"</td>"+
+                "<td>"+ user.todoDetails[i].category +"</td>"+
+                "<td>"+ user.todoDetails[i].startDate +"</td>"+
+                "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+                "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+                "<td>"+ user.todoDetails[i].status +"</td>"+
+                "<td>"+ "<button style='opacity:0.5' disabled>Edit</button>" +"</td>"+
+                "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+            }
+            else if(user.todoDetails[i].status === "Pending")
+            {
+                row.innerHTML=
+                "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+                "<td>"+ user.todoDetails[i].title +"</td>"+
+                "<td>"+ user.todoDetails[i].category +"</td>"+
+                "<td>"+ user.todoDetails[i].startDate +"</td>"+
+                "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+                "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+                "<td>"+ user.todoDetails[i].status +"</td>"+
+                "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
+                "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+            }
+    
+            table.appendChild(row);
+        }
+    }
+}//fillTable()
 
 function toEditPage(index){
     console.log("sessionStorage.Key(0): "+sessionStorage.key(0));
     sessionStorage.setItem(sessionStorage.key(sessionStorage.length - 1),index);
     console.log(index);
     window.location.href = "todoEdit.html";
-}
+}//toEditPage
 
 function deleteRow(index){
     console.log(index);
@@ -62,7 +69,7 @@ function deleteRow(index){
     console.log("task deleted");
     console.log(user.todoDetails.length);
     window.location.href="todoList.html";
-}
+}//deleteRow
 
 function check(){
     let flag = false;
@@ -88,7 +95,7 @@ function check(){
         document.getElementById("delete-btn").style.opacity = 0.4;
         document.getElementById("done-btn").style.display = "none";
     }
-}
+}//check()
 
 function checkAll(){
     let arr = document.getElementsByClassName("checkboxes");
@@ -113,7 +120,7 @@ function checkAll(){
         document.getElementById("delete-btn").style.opacity = 0.4;
         document.getElementById("done-btn").style.display = "none";
     }
-}
+}//checkAll()
 
 function disableEditAndDelete(){
     let arr = document.getElementsByClassName("disable");
@@ -122,7 +129,7 @@ function disableEditAndDelete(){
         arr[i].disabled = true;
         arr[i].style.opacity = 0.4;
     }
-}
+}//disableEditAndDelete()
 
 function enableEditAndDelete(){
     let arr = document.getElementsByClassName("disable");
@@ -131,10 +138,9 @@ function enableEditAndDelete(){
         arr[i].disabled = false;
         arr[i].style.opacity = 1;
     }
-}
+}//enableEditAndDelete()
 
 function deleteTodo(){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let arr = document.getElementsByClassName("checkboxes");
     for(let i=0; i<arr.length; i++)
     {
@@ -148,26 +154,24 @@ function deleteTodo(){
      });
     localStorage.setItem(user.email,JSON.stringify(user));
     window.location.href = "todoList.html";
-}
+}//deleteTodo()
 
 function delSession(){
     sessionStorage.clear();
     console.log("session cleared");
     window.location.href="index.html";
-}
+}//delSession()
 
 function addNewTask(){
     console.log("going to add new task");
     window.location.href="addNew-todo.html";
-}
+}//addNewTask()
 
 function filter(){
-    // let user = JSON.parse(localStorage.getItem(sessionStorage.key(sessionStorage.length - 1)));
     let sel = document.getElementById("category");
     let category = sel.options[sel.selectedIndex].text;
     console.log("category: "+category);
     
-
     if(category == "Office" || category == "Personal" || category == "Other")
     {
         console.log("outer if");
@@ -220,43 +224,52 @@ function filter(){
 }//filter
 
 function search(value){
-    for (let i = 0; i < user.todoDetails.length; i++) {
+    if(value.length > 0)
+    {
+        for (let i = 0; i < user.todoDetails.length; i++) {
 
-        if((user.todoDetails[i].title)==value.trim()){
-            
-            var tableRows = table.getElementsByTagName('tr');
-            var rowCount = tableRows.length;
-    
-            for (var x = rowCount - 1; x >= 0; x--) {
-                table.removeChild(tableRows[x]);
-            }
-
-            let row = document.createElement("tr");
-                row.innerHTML =
-                "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
-                "<td>"+ user.todoDetails[i].title +"</td>"+
-                "<td>"+ user.todoDetails[i].category +"</td>"+
-                "<td>"+ user.todoDetails[i].startDate +"</td>"+
-                "<td>"+ user.todoDetails[i].dueDate +"</td>"+
-                "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
-                "<td>"+ user.todoDetails[i].status +"</td>"+
-                "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
-                "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
-
-                    table.appendChild(row);
-                    break;
-        }
-            else{
+            if((user.todoDetails[i].title.toLowerCase())==value.toLowerCase().trim()){
+                document.getElementById("search-message").style.display = "none";
                 var tableRows = table.getElementsByTagName('tr');
                 var rowCount = tableRows.length;
         
                 for (var x = rowCount - 1; x >= 0; x--) {
                     table.removeChild(tableRows[x]);
                 }
-                fillTable()
+    
+                let row = document.createElement("tr");
+                    row.innerHTML =
+                    "<td>"+ "<input type='checkbox' class='checkboxes' onchange='check()'></input>" +"</td>"+
+                    "<td>"+ user.todoDetails[i].title +"</td>"+
+                    "<td>"+ user.todoDetails[i].category +"</td>"+
+                    "<td>"+ user.todoDetails[i].startDate +"</td>"+
+                    "<td>"+ user.todoDetails[i].dueDate +"</td>"+
+                    "<td>"+ user.todoDetails[i].reminderDate +"</td>"+
+                    "<td>"+ user.todoDetails[i].status +"</td>"+
+                    "<td>"+ "<button onclick='toEditPage("+i+")'"+" class='disable'>Edit</button>" +"</td>"+
+                    "<td>"+ "<button onclick='deleteRow("+i+")'"+" class='disable' style='border:2px solid red;color:red'>Delete</button>" +"</td>";
+    
+                        table.appendChild(row);
+                        break;
             }
+            else{
+                    var tableRows = table.getElementsByTagName('tr');
+                    var rowCount = tableRows.length;
+            
+                    for (var x = rowCount - 1; x >= 0; x--) {
+                        table.removeChild(tableRows[x]);
+                    }
+                    // fillTable()
+                    document.getElementById("search-message").style.display = "block";
+                }
+        }
     }
-}
+    else{
+        fillTable();
+        document.getElementById("search-message").style.display = "none";
+    }
+    
+}//search()
 
 function markDone(){
     let arr = document.getElementsByClassName("checkboxes");
@@ -270,4 +283,4 @@ function markDone(){
 
     localStorage.setItem(user.email,JSON.stringify(user));
     window.location.reload();
-}
+}//markDone()

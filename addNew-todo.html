@@ -36,19 +36,19 @@
                         </select>
 
                         <label for="start-date">Start date:</label>
-                        <input type="date" id="start-date" required>
+                        <input type="date" id="start-date" oninput="minDueDate(this.value)" required>
 
                         <label for="due-date">Due date:</label>
                         <span class="error-msg" id="error-greaterStart">Due date cannot be smaller than start date</span>
-                        <input type="date" id="due-date" required>
+                        <input type="date" id="due-date" oninput="maxRemDate(this.value)" required>
 
                         <label>Is Reminder:</label>
                         <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()">Yes</span>
                         <span onclick="checkRadio(2)"><input type="radio" name="reminderValue" value="no" id="no" oninput="fadeReminder()">No</span>
                         <br>
 
-                        <label for="reminder-date" class="reminder">Reminder date:</label> <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
-                        <span class="error-msg" id="error-reminderDate">Reminder date should be in between start date an due date</span> 
+                        <label for="reminder-date" class="reminder">Reminder date:</label> 
+                        <span class="error-msg" id="error-reminderEmpty">Reminder date should not be empty</span> 
                         <input type="date" id="reminder-date" class="reminder">
 
                         <label>Is Public:</label>

@@ -115,3 +115,12 @@ function delSession(){
     sessionStorage.clear();
     console.log("Session storage cleared");
 }
+
+function checkRadio(value){
+    if(value == 1){
+        document.getElementById("M").checked = true;
+    }
+    else if(value == 2){
+        document.getElementById("F").checked = true;
+    }
+}

@@ -34,11 +34,11 @@
                         </select>
 
                         <label for="start-date">Start date:</label>
-                        <input type="date" id="start-date" required>
+                        <input type="date" id="start-date" oninput="minDueDate(this.value)" required>
 
                         <label for="due-date">Due date:</label>
                         <span class="error-msg" id="error-greaterStart">Due date cannot be smaller than start date</span>
-                        <input type="date" id="due-date" required>
+                        <input type="date" id="due-date" oninput="maxRemDate(this.value)" required>
 
                         <label for="reminder">Is Reminder:</label>
                         <span onclick="checkRadio(1)"><input type="radio" name="reminderValue" value="yes" id="yes" oninput="selectReminder()" class="disabledInput">Yes</span>
@@ -53,9 +53,6 @@
                         <span onclick="checkPublic(1)"><input type="radio" name="isPublic" value="yes" id="publicYes">Yes</span>
                         <span onclick="checkPublic(2)"><input type="radio" name="isPublic" value="no" id="publicNo">No</span>
                         <br>
-
-                        <!-- <label for="description">Description:</label><br>
-                        <textarea id="description" required></textarea> -->
                         
                         <input type="submit" value="Submit">
                     </form>
